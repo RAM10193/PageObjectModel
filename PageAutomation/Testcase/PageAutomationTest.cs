@@ -1,4 +1,7 @@
 ﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using PageAutomation.PageFns;
 using PageAutomation.SupportFns;
 using System;
 using System.Collections.Generic;
@@ -10,23 +13,36 @@ namespace PageAutomation
 {
     class Program
     {
-      [SetUp]
+
+    IWebDriver dr;
+
+    static public void Main(String[] args)
+    {
+
+        Console.WriteLine("Test Initiated");
+    }
+
+     [SetUp]
       public void initialize()
         {
-            driverInit.driver.Navigate().GoToUrl("https://www.orangehrm.com/open-source/open-source-on-demand");
-            driverInit.driver.Manage().Window.Maximize();
+            //( Username : Admin | Password : admin123 )
+            browserDr ts = new browserDr();
+            dr = ts.getchromedriver();
+            dr.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/");
         }
 
     [Test]
     public void Loginfunction()
         {
+            Login lgn = new Login(dr);
+            lgn.orangelogin();
 
         }
 
     [TearDown]
     public void closebrowser()
         {
-
+            dr.Quit();
         }   
     }
 }

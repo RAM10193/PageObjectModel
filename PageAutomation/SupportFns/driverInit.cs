@@ -10,7 +10,6 @@ namespace PageAutomation.SupportFns
     class driverInit
     {
      public static IWebDriver driver { get; set; }
-
    
     }
 
