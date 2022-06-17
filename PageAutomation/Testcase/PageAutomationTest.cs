@@ -36,7 +36,9 @@ namespace PageAutomation
         {
             Login lgn = new Login(dr);
             lgn.orangelogin();
-
+            AdminPg usrmgmt = new AdminPg(dr);
+            usrmgmt.orangeAdminLinkClick();
+            usrmgmt.orangeAdminUserMgmt();
         }
 
     [TearDown]

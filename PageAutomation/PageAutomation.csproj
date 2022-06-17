@@ -81,6 +81,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageFns\AdminPg.cs" />
     <Compile Include="PageFns\Login.cs" />
     <Compile Include="SupportFns\browserDr.cs" />
     <Compile Include="SupportFns\driverFunctions.cs" />
