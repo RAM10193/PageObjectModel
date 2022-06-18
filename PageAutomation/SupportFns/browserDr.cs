@@ -15,7 +15,6 @@ namespace PageAutomation.SupportFns
                 dr = new ChromeDriver();
                 dr.Manage().Window.Maximize();
                 return dr;
-            }      
-
+            }
     }
 }

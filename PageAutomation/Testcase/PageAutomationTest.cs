@@ -15,7 +15,6 @@ namespace PageAutomation
     {
 
     IWebDriver dr;
-
     static public void Main(String[] args)
     {
 
@@ -39,6 +38,7 @@ namespace PageAutomation
             AdminPg usrmgmt = new AdminPg(dr);
             usrmgmt.orangeAdminLinkClick();
             usrmgmt.orangeAdminUserMgmt();
+            usrmgmt.addEmployee();
         }
 
     [TearDown]

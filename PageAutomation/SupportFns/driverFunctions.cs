@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,33 +9,21 @@ using System.Threading.Tasks;
 
 namespace PageAutomation.SupportFns
 {
-    class driverFunctions
+    class driverFunctions 
     {
 
         IWebDriver dr;
         public driverFunctions(IWebDriver driver)
         {
-            this.dr = driver;
+            dr = driver;
         }
-
-        public String GetText(String elementType, String locator)
+        
+        public String GetText(By element)
         {
-            String text;
-                
-            if (elementType.ToLower() == "id")
+            String text;                
+            if (dr.FindElement(element).Displayed)
             {
-                dr.Dispose();
-                text = this.dr.FindElement(By.Id(locator)).Text;
-            }
-
-            else if (elementType.ToLower() == "name")
-            {
-
-                text = dr.FindElement(By.Name(locator)).Text;
-            }
-            else if (elementType.ToLower() == "xpath")
-            {
-                text = dr.FindElement(By.XPath(locator)).Text;
+                text = dr.FindElement(element).Text;
             }
 
             else
@@ -46,30 +36,12 @@ namespace PageAutomation.SupportFns
 
 
 
-        public Boolean GetTextAndValidate(String elementType, String locator, String validationvalue)
+        public Boolean GetTextAndValidate(By element,String validationvalue)
         {
             bool validaton = false;
-            if (elementType.ToLower() == "id")
+            if (dr.FindElement(element).Displayed)
             {
-                String text = GetText("id", locator);
-                if (text.ToLower().Trim().Equals(validationvalue.ToLower().Trim()))
-                {
-                    validaton = true;
-                }
-            }
-
-            else if (elementType.ToLower() == "name")
-            {
-
-                String text = GetText("name", locator);
-                if (text.ToLower().Trim().Equals(validationvalue.ToLower().Trim()))
-                {
-                    validaton = true;
-                }
-            }
-            else if (elementType.ToLower() == "xpath")
-            {
-                String text = GetText("xpath", locator);
+                String text = GetText(element);
                 if (text.ToLower().Trim().Equals(validationvalue.ToLower().Trim()))
                 {
                     validaton = true;
@@ -99,5 +71,59 @@ namespace PageAutomation.SupportFns
             }
             return validaton;
         }
+
+        public void typeText(By element, String value)
+        {
+            if (dr.FindElement(element).Displayed)
+                dr.FindElement(element).SendKeys(value);
+            else
+                throw new ElementNotVisibleException();
+        }
+
+        public void clickElement(By element, String value)
+        {
+            if (dr.FindElement(element).Displayed)
+                dr.FindElement(element).Click();
+            else
+                throw new ElementClickInterceptedException();
+
+
+        }
+
+        public void ActionsclickElement(By element)
+        {
+            Actions actions = new Actions(dr);
+            IJavaScriptExecutor ex = (IJavaScriptExecutor)dr;
+            if (dr.FindElement(element).Displayed)
+                ex.ExecuteScript("arguments[0].click();", dr.FindElement(element));
+            else
+                throw new ElementClickInterceptedException();
+
+
+        }
+
+        public void SubmitForm(By element)
+        {
+            try
+            {
+                if (dr.FindElement(element).Displayed)
+                    dr.FindElement(element).Submit();
+            }
+            catch
+            {
+                throw new ElementClickInterceptedException();
+            }
+        }
+
+
+        public void SelectvaluesDropdown(By element , String value)
+        {
+
+            if (dr.FindElement(element).Displayed)
+                new SelectElement(dr.FindElement(element)).SelectByText(value);
+            else
+                throw new ElementClickInterceptedException();
+        }
+
     }
 }
