@@ -13,6 +13,7 @@ namespace PageAutomation.SupportFns
     {
 
         IWebDriver dr;
+        List<String> Alloptions = new List<string>();
         public driverFunctions(IWebDriver driver)
         {
             dr = driver;
@@ -71,6 +72,32 @@ namespace PageAutomation.SupportFns
             }
             return validaton;
         }
+
+
+        public List<String> GetAllOptionsDropDownList(By element)
+        {
+            
+            if (dr.FindElement(element).Displayed)
+            {
+                SelectElement selectList = new SelectElement(dr.FindElement(element));
+                IList<IWebElement> Totaloptions = selectList.Options;
+                int ItemSize = Totaloptions.Count;
+                for (int i = 1 ; i <= ItemSize; i++)
+                {
+                    String ItemValue = Totaloptions.ElementAt(i-1).Text.ToString();
+                    Alloptions.Add(ItemValue);
+                    Console.Write("\nThe option at index"+i+"is: "+ ItemValue);  
+                }
+                return Alloptions;
+
+            }
+            else
+            {
+                throw new ElementNotVisibleException();
+            }
+            
+        }
+
 
         public void typeText(By element, String value)
         {

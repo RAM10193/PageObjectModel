@@ -55,7 +55,10 @@ namespace PageAutomation.PageFns
             if (dr.FindElement(SAVEBTN).Displayed)
             {
                 driverFunctions supportDr = new driverFunctions(dr);
-                supportDr.SelectvaluesDropdown(USERROLE, "ESS");
+                if (supportDr.GetAllOptionsDropDownList(USERROLE).Contains("Admin"))
+                {
+                    supportDr.SelectvaluesDropdown(USERROLE, "Admin");
+                }                        
                 supportDr.typeText(EMPNAME,"Rebecca");
                 dr.FindElement(By.XPath("//li[@class='ac_even ac_over' and contains(.,'Rebecca')]")).Click();
                 supportDr.SelectvaluesDropdown(STATUS, "Enabled");
