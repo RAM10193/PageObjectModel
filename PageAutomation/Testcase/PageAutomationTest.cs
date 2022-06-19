@@ -26,8 +26,7 @@ namespace PageAutomation
         {
             //( Username : Admin | Password : admin123 )
             browserDr ts = new browserDr();
-            dr = ts.getchromedriver();
-            dr.Navigate().GoToUrl("https://opensource-demo.orangehrmlive.com/");
+            this.dr = ts.NavigateToURL("https://opensource-demo.orangehrmlive.com/");
         }
 
     [Test]

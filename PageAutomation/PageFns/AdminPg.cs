@@ -56,8 +56,8 @@ namespace PageAutomation.PageFns
             {
                 driverFunctions supportDr = new driverFunctions(dr);
                 supportDr.SelectvaluesDropdown(USERROLE, "ESS");
-                supportDr.typeText(EMPNAME,"Rebacca");
-                dr.FindElement(By.XPath("//li[@class='ac_even ac_over' and contains(.,'Rebacca')]")).Click();
+                supportDr.typeText(EMPNAME,"Rebecca");
+                dr.FindElement(By.XPath("//li[@class='ac_even ac_over' and contains(.,'Rebecca')]")).Click();
                 supportDr.SelectvaluesDropdown(STATUS, "Enabled");
                 supportDr.typeText(PASSWORD,"Ramkrishna93$");
                 supportDr.typeText(CNFRMPWD, "Ramkrishna93$");
