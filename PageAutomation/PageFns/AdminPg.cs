@@ -64,7 +64,7 @@ namespace PageAutomation.PageFns
                 supportDr.SelectvaluesDropdown(STATUS, "Enabled");
                 supportDr.typeText(PASSWORD,"Ramkrishna93$");
                 supportDr.typeText(CNFRMPWD, "Ramkrishna93$");
-                dr.FindElement(SAVEBTN).Click();
+                dr.FindElement(SAVEBTN).Click();                
             }
         }
 
