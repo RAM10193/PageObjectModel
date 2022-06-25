@@ -9,28 +9,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace PageAutomation
 {
-    class Program
+    [TestFixture]
+    class addUserCredentials_OrangeHRM
     {
+       IWebDriver dr;
+        
+       /*static public void Main(String[] args)
+       {
 
-    IWebDriver dr;
-    static public void Main(String[] args)
-    {
+           Console.WriteLine("Test Initiated");
+       }*/
 
-        Console.WriteLine("Test Initiated");
-    }
-
-     [SetUp]
+       [SetUp]
       public void initialize()
         {
-            //( Username : Admin | Password : admin123 )
+            //( Username : Admin | Password : admin123 ) 
+            testDetails.testMethodName = TestContext.CurrentContext.Test.Name.ToString();
+            //string className = this.GetType().FullName;           
             browserDr ts = new browserDr();
             this.dr = ts.NavigateToURL("https://opensource-demo.orangehrmlive.com/");
+            String DATASHEET = "OrangeHRMTestData.xlsx";
+            ExcelUtil.PopulateInCollection(DATASHEET);
         }
 
     [Test]
-    public void Loginfunction()
+    public void TC2_OrangeHRM_AddUserDetails()
         {
             Login lgn = new Login(dr);
             lgn.orangelogin();
