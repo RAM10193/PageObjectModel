@@ -44,6 +44,7 @@ namespace PageAutomation
             usrmgmt.orangeAdminLinkClick();
             usrmgmt.orangeAdminUserMgmt();
             usrmgmt.addEmployee();
+            usrmgmt.SelectEmploye();
         }
 
     [TearDown]
